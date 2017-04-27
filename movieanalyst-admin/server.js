@@ -113,4 +113,6 @@ app.get('/pending', getAccessToken, function(req, res){
 
 // Our MovieAnalyst Admin site will listen on port 4000. 
 // Feel free to change this as you see fit, just know that you can’t have multiple processes listening on the same port.
-app.listen(4000);
+app.listen(4000, function () {
+    console.log('The admin server is listening on port 4000');
+});

@@ -6,7 +6,7 @@ var rsaValidation = require('auth0-api-jwt-rsa-validation');
 
 // middleware function to validate the access token when our API is called
 // Note that the audience field is the identifier you gave to your API.
-console.log(rsaValidation());
+//console.log(rsaValidation());
 var jwtCheck = jwt({
   secret: rsaValidation(),
   algorithms: ['RS256'],
@@ -26,7 +26,7 @@ app.use(function (err, req, res, next) {
 
 // Check if the client has permissions to view the endpoint requested.
 var guard = function(req, res, next){
-  console.log(req.user);
+  //console.log(req.user);
   // we’ll use a case switch statement on the route requested
   switch(req.path){
     // if the request is for movie reviews we’ll check to see if the token has general scope
@@ -68,7 +68,7 @@ var guard = function(req, res, next){
     // For the pending route, we’ll check to make sure the token has the scope of admin before returning the results.
     case '/pending': {
       var permissions = ['admin'];
-      console.log(req.user.scope);
+      //console.log(req.user.scope);
       for(var i = 0; i < permissions.length; i++){
         if(req.user.scope.includes(permissions[i])){
           next();
@@ -149,5 +149,5 @@ app.get('/pending', function(req, res){
 
 // Launch our API Server and have it listen on port 8080.
 app.listen(8080, function () {
-    console.log('The server is listening on port 8080')
+    console.log('The api server is listening on port 8080');
 });

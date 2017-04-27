@@ -67,7 +67,7 @@ app.get('/movies', getAccessToken, function (req, res) {
     .get('http://localhost:8080/movies')
     .set('Authorization', 'Bearer ' + req.access_token)
     .end(function (err, data) {
-      console.log(data);
+      //console.log(data);
       if (data.status == 403) {
         res.status(403).send('Forbidden');
       } else {
@@ -125,4 +125,6 @@ app.get('/pending', getAccessToken, function (req, res) {
 
 // Our MovieAnalyst Website will listen on port 3000. 
 // Feel free to change this as you see fit, just know that you can’t have multiple processes listening on the same port.
-app.listen(3000);
+app.listen(3000, function () {
+    console.log('The website server is listening on port 3000');
+});
